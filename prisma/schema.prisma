@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id            String         @id @default(uuid())
+  fullname      String
+  username      String
+  email         String
+  password      String
+  created_at    DateTime       @default(now())
+  updated_at    DateTime?      @updatedAt
+}
+
+model DataTps {
+  id                   Int      @id @default(autoincrement())
+  tahun                Int
+  provinsi             String
+  kabupatenKota        String
+  namaFasilitas        String
+  jenis                String
+  open                 String
+  close                String
+  status               Status
+  sampahMasuk          Float    
+  sampahMasukLandfill  Float    
+}
+
+enum Status {
+  Active
+  Inactive
+}
